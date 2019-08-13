@@ -1,0 +1,28 @@
+<h1>Home#index</h1>
+<div class="row">
+  <div class="col-md-9">
+    <ul id="conversations-list">
+      <% @conversations.each do |conversation| %>
+        <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div class="col-md-3">
+  <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    User list
+  </button>
+   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="panel panel-primary">
+      
+      <div class="panel-body">
+        <ul>
+          <% @users.each do |user| %>
+            <li><%= link_to user.email, conversations_path(user_id: user), remote: true, method: :post %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
